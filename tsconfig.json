@@ -8,7 +8,7 @@
     "jsx": "preserve",
     "sourceMap": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
+    "isolatedModules": true, // 每个sfc是否必须要导出
     "esModuleInterop": true,
     "lib": ["esnext", "dom"]
   },

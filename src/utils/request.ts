@@ -3,7 +3,7 @@
  * @Date: 2022-04-12 15:11:08
  * @LastEditors: wangrui
  * @Description:
- * @LastEditTime: 2022-04-14 17:27:45
+ * @LastEditTime: 2022-06-01 15:40:47
  */
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import qs from 'qs';
@@ -76,11 +76,7 @@ class Request {
         if (response.status === 200) {
           return res.data || res;
         } else {
-          const error =
-            Message[response.status] ||
-            res.errorMsg ||
-            Message[Number(res.responseCode)] ||
-            '服务器内部错误';
+          const error = Message[response.status] || res.errorMsg || Message[Number(res.responseCode)] || '服务器内部错误';
           ElMessage.error('错误：' + error);
         }
         return Promise.reject(response);
@@ -106,11 +102,7 @@ class Request {
     );
   }
 
-  public get<T>(
-    url: string,
-    params: AxiosRequestConfig,
-    config: AxiosRequestConfig
-  ): Promise<T> {
+  public get<T>(url: string, params?: Object, config?: AxiosRequestConfig): Promise<T> {
     return Request.instance.get(url, {
       params: {
         ...params,
@@ -122,7 +114,7 @@ class Request {
     });
   }
 
-  public post<T>(url: string, params: AxiosRequestConfig): Promise<T> {
+  public post<T>(url: string, params?: AxiosRequestConfig): Promise<T> {
     return instance.post(url, params);
   }
 }
